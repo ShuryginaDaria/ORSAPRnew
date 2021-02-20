@@ -38,7 +38,7 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.CraftButton = new System.Windows.Forms.Button();
+            this.BuildButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -136,16 +136,16 @@
             this.textBox5.Size = new System.Drawing.Size(100, 26);
             this.textBox5.TabIndex = 8;
             // 
-            // CraftButton
+            // BuildButton
             // 
-            this.CraftButton.Location = new System.Drawing.Point(816, 284);
-            this.CraftButton.Margin = new System.Windows.Forms.Padding(3, 3, 5, 5);
-            this.CraftButton.Name = "CraftButton";
-            this.CraftButton.Size = new System.Drawing.Size(113, 35);
-            this.CraftButton.TabIndex = 10;
-            this.CraftButton.Text = "Построить";
-            this.CraftButton.UseVisualStyleBackColor = true;
-            this.CraftButton.Click += new System.EventHandler(this.CraftButton_Click);
+            this.BuildButton.Location = new System.Drawing.Point(816, 284);
+            this.BuildButton.Margin = new System.Windows.Forms.Padding(3, 3, 5, 5);
+            this.BuildButton.Name = "BuildButton";
+            this.BuildButton.Size = new System.Drawing.Size(113, 35);
+            this.BuildButton.TabIndex = 10;
+            this.BuildButton.Text = "Построить";
+            this.BuildButton.UseVisualStyleBackColor = true;
+            this.BuildButton.Click += new System.EventHandler(this.BuildButton_Click);
             // 
             // groupBox1
             // 
@@ -198,7 +198,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.CraftButton);
+            this.Controls.Add(this.BuildButton);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(965, 385);
             this.MinimumSize = new System.Drawing.Size(965, 385);
@@ -225,7 +225,7 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Button CraftButton;
+        private System.Windows.Forms.Button BuildButton;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox2;
