@@ -16,5 +16,15 @@ namespace ORSAPRnew
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void CraftButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
