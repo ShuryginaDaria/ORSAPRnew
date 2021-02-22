@@ -79,5 +79,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Box.Builder\Box.Builder.csproj">
+      <Project>{eaa777f8-4c02-4b47-808f-4d17e13472f8}</Project>
+      <Name>Box.Builder</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

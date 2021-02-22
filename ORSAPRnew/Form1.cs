@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Box.KompasWrapper;
-using Box.Model;
+
 
 namespace ORSAPRnew
 {
@@ -36,7 +36,7 @@ namespace ORSAPRnew
         /// <param name="e"></param>
         private void BuildButton_Click(object sender, EventArgs e)
         {
-            _builder.StartKompas();
+          _builder.StartKompas();
 
         }
 

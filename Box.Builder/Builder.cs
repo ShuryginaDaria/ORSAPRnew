@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using Box.Model;
 using Kompas6API5;
 using Kompas6Constants3D;
 
