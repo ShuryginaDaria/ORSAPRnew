@@ -9,7 +9,7 @@ namespace ORSAPRnew
         #region Public methods
 
         /// <summary>
-        ///     Метод проверки введёного в TextBox значения
+        ///     Метод проверки введёного в TextBox значени
         ///     на корректность для Convert.ToDouble
         /// </summary>
         /// <param name="text"></param>
