@@ -46,52 +46,32 @@ namespace Box.Model
         /// <summary>
         ///     Минимальное значение длины
         /// </summary>
-        private const double MinLength = 5;
+        private const double MinLength = 1200;
 
         /// <summary>
         ///     Максимальное значение длины
         /// </summary>
-        private const double MaxLength = 20;
+        private const double MaxLength = 1500;
 
         /// <summary>
-        ///     Минимальное значение внутренней ширины коробки
+        ///     Минимальное значение  ширины отсека
         /// </summary>
-        private const double MinWidthInside = 640;
+        private const double MinWidthCompartment = 310;
 
         /// <summary>
-        ///     Максимальное значение внутренней ширины коробки
+        ///     Максимальное значение  ширины отсека
         /// </summary>
-        private const double MaxWidthInside = (MaxWidth - 2*Thickness);
+        private const double MaxWidthCompartment = 460;
 
         /// <summary>
-        ///     Минимальное значение внутренней длины коробки
+        ///     Минимальное значение  длины отсека
         /// </summary>
-        private const double MinLengthInside = 1140;
+        private const double MinLengthCompartment = 560;
 
         /// <summary>
-        ///     Максимальное значение внутренней длины коробки
+        ///     Максимальное значение  длины отсека
         /// </summary>
-        private const double MaxLengthInside = (MaxLength - 2*Thickness);
-
-        /// <summary>
-        ///     Минимальное значение внутренней ширины отсека
-        /// </summary>
-        private const double MinWidthCompartment = 620;
-
-        /// <summary>
-        ///     Максимальное значение внутренней ширины отсека
-        /// </summary>
-        private const double MaxWidthCompartment = (MaxWidth - 80)/2;
-
-        /// <summary>
-        ///     Минимальное значение внутренней длины отсека
-        /// </summary>
-        private const double MinLengthCompartment = 1120;
-
-        /// <summary>
-        ///     Максимальное значение внутренней длины отсека
-        /// </summary>
-        private const double MaxLengthCompartment = (MaxLength - 80)/2;
+        private const double MaxLengthCompartment = 710;
 
         #endregion
 
@@ -112,15 +92,6 @@ namespace Box.Model
         /// </summary>
         private double _height;
                 
-        /// <summary>
-        ///     Длина внутренней стенки отсека 
-        /// </summary>
-        private double _lengthInside;
-
-        /// <summary>
-        ///     Ширина внутренней стенки отсека 
-        /// </summary>
-        private double _widthInside;
 
         /// <summary>
         ///     Ширина внутренней части основания
@@ -186,25 +157,6 @@ namespace Box.Model
                 SetCorrectValue(ParameterType.WidthCompartment, value, MaxWidthCompartment, MinWidthCompartment);
         }
 
-        /// <summary>
-        ///     Длина внутри коробки
-        /// </summary>
-        public double LengthInside
-        {
-            get => _lengthInside;
-            private set => _lengthInside =
-                SetCorrectValue(ParameterType.LengthInside, value, MaxLengthInside, MinLengthInside);
-        }
-
-        /// <summary>
-        ///     Ширина внутри коробки
-        /// </summary>
-        public double WidthInside
-        {
-            get => _widthInside;
-            private set => _widthInside =
-                SetCorrectValue(ParameterType.LengthInside, value, MaxWidthInside, MinWidthInside);
-        }
 
 
 
@@ -213,37 +165,24 @@ namespace Box.Model
         #region Constructor
 
         /// <summary>
-        ///     Конструктор параметров уголка
+        ///     Конструктор параметров коробки
         /// </summary>
         /// <param name="length"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="lengthCompartment"></param>
         /// <param name="widthCompartment"></param>
-        /// <param name="lengthInside"></param>
-        /// <param name="widthInside"></param>
+
         public PlaneParameters(double length, double width, double height,
-            double lengthCompartment, int widthCompartment, double lengthInside, double widthInside)
+            double lengthCompartment, int widthCompartment)
         {
              Length = length;
              Width = width;
              Height = height;
              LengthCompartment = lengthCompartment;
              WidthCompartment = widthCompartment;
-             LengthInside = lengthInside;
-             WidthInside = widthInside;
 
-            if (length <= lengthInside)
-            {
-                throw new ArgumentException(
-                    "Длина внутри  не может быть больше длина коробки");
-            }
-
-            if (width <= widthInside)
-            {
-                throw new ArgumentException(
-                    "Ширина внутри  не может быть больше ширины коробки");
-            }
+                       
 
             if (width / 2 <= widthCompartment)
             {

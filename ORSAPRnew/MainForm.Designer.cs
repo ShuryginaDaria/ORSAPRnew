@@ -1,6 +1,6 @@
 ﻿namespace ORSAPRnew
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.HeightTextBox = new System.Windows.Forms.TextBox();
+            this.LengthTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.WidthTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.LengthCompartmentTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.WidthCompartmentTextBox = new System.Windows.Forms.TextBox();
             this.BuildButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -45,21 +45,23 @@
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // HeightTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(221, 32);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(89, 22);
-            this.textBox1.TabIndex = 0;
+            this.HeightTextBox.Location = new System.Drawing.Point(221, 32);
+            this.HeightTextBox.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.HeightTextBox.Name = "HeightTextBox";
+            this.HeightTextBox.Size = new System.Drawing.Size(89, 22);
+            this.HeightTextBox.TabIndex = 0;
+            this.HeightTextBox.TextChanged += new System.EventHandler(this.HeightTextBox_TextChanged);
             // 
-            // textBox2
+            // LengthTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(221, 77);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(89, 22);
-            this.textBox2.TabIndex = 1;
+            this.LengthTextBox.Location = new System.Drawing.Point(221, 77);
+            this.LengthTextBox.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.LengthTextBox.Name = "LengthTextBox";
+            this.LengthTextBox.Size = new System.Drawing.Size(89, 22);
+            this.LengthTextBox.TabIndex = 1;
+            this.LengthTextBox.TextChanged += new System.EventHandler(this.LengthTextBox_TextChanged);
             // 
             // label1
             // 
@@ -70,7 +72,6 @@
             this.label1.Size = new System.Drawing.Size(147, 17);
             this.label1.TabIndex = 2;
             this.label1.Text = "Высота коробки (мм)";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -92,13 +93,14 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Ширина коробки (мм)";
             // 
-            // textBox3
+            // WidthTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(221, 127);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(89, 22);
-            this.textBox3.TabIndex = 4;
+            this.WidthTextBox.Location = new System.Drawing.Point(221, 127);
+            this.WidthTextBox.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.WidthTextBox.Name = "WidthTextBox";
+            this.WidthTextBox.Size = new System.Drawing.Size(89, 22);
+            this.WidthTextBox.TabIndex = 4;
+            this.WidthTextBox.TextChanged += new System.EventHandler(this.WidthTextBox_TextChanged);
             // 
             // label4
             // 
@@ -110,13 +112,14 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Длина каждого отсека (мм)";
             // 
-            // textBox4
+            // LengthCompartmentTextBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(224, 37);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(89, 22);
-            this.textBox4.TabIndex = 6;
+            this.LengthCompartmentTextBox.Location = new System.Drawing.Point(224, 37);
+            this.LengthCompartmentTextBox.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.LengthCompartmentTextBox.Name = "LengthCompartmentTextBox";
+            this.LengthCompartmentTextBox.Size = new System.Drawing.Size(89, 22);
+            this.LengthCompartmentTextBox.TabIndex = 6;
+            this.LengthCompartmentTextBox.TextChanged += new System.EventHandler(this.LengthCompartmentTextBox_TextChanged);
             // 
             // label5
             // 
@@ -128,13 +131,14 @@
             this.label5.TabIndex = 9;
             this.label5.Text = "Ширина каждого отсека (мм)";
             // 
-            // textBox5
+            // WidthCompartmentTextBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(224, 81);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(89, 22);
-            this.textBox5.TabIndex = 8;
+            this.WidthCompartmentTextBox.Location = new System.Drawing.Point(224, 81);
+            this.WidthCompartmentTextBox.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.WidthCompartmentTextBox.Name = "WidthCompartmentTextBox";
+            this.WidthCompartmentTextBox.Size = new System.Drawing.Size(89, 22);
+            this.WidthCompartmentTextBox.TabIndex = 8;
+            this.WidthCompartmentTextBox.TextChanged += new System.EventHandler(this.WidthCompartmentTextBox_TextChanged);
             // 
             // BuildButton
             // 
@@ -149,16 +153,16 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.HeightTextBox);
+            this.groupBox1.Controls.Add(this.LengthTextBox);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.WidthTextBox);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(11, 17);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 8, 3, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(399, 174);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
@@ -166,20 +170,20 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox5);
+            this.groupBox2.Controls.Add(this.WidthCompartmentTextBox);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.textBox4);
+            this.groupBox2.Controls.Add(this.LengthCompartmentTextBox);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Location = new System.Drawing.Point(8, 201);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 8, 3, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(402, 131);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Параметры отсеков";
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -188,15 +192,13 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.BuildButton);
-            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(440, 440);
             this.MinimumSize = new System.Drawing.Size(440, 440);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.ShowIcon = false;
             this.Text = "Box Builder";
-            this.Load += new System.EventHandler(this.Form1_Load_1);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -207,16 +209,16 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox HeightTextBox;
+        private System.Windows.Forms.TextBox LengthTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox WidthTextBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox LengthCompartmentTextBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox WidthCompartmentTextBox;
         private System.Windows.Forms.Button BuildButton;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;

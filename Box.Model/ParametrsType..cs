@@ -10,9 +10,5 @@
         Length,
         WidthCompartment,
         LengthCompartment,
-        LengthInside,
-        WidthInside,
-        Thickness,
-        ThicknessCompartment
     }
 }

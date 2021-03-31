@@ -8,11 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Box.KompasWrapper;
+using static ORSAPRnew.FormTools;
 
 
 namespace ORSAPRnew
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         #region Readonly fields
 
@@ -20,7 +21,7 @@ namespace ORSAPRnew
 
         #endregion
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -40,12 +41,27 @@ namespace ORSAPRnew
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void HeightTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void Form1_Load_1(object sender, EventArgs e)
+        private void LengthTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void WidthTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LengthCompartmentTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void WidthCompartmentTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }
