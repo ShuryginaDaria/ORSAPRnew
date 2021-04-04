@@ -85,6 +85,10 @@
       <Project>{eaa777f8-4c02-4b47-808f-4d17e13472f8}</Project>
       <Name>Box.Builder</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Box.Model\Box.Model.csproj">
+      <Project>{eec18da3-4424-473d-aafb-c6c02e1d3dc7}</Project>
+      <Name>Box.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

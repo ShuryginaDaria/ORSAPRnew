@@ -53,7 +53,41 @@ namespace Box.KompasWrapper
             }
         }
 
-       
-        
+        /// <summary>
+        ///     Построение одной плоскости
+        /// </summary>
+        /// <param name="part"></param>
+        /// <param name="plane"></param>
+        /// <param name="height"></param>
+        /// <param name="width"></param>
+        /// <param name="thickness"></param>
+        private void BuildPlane(ksPart part, ksEntity plane, double height, double width,
+            double thickness)
+        {
+            ksEntity sketch = part.NewEntity((short)Obj3dType.o3d_sketch);
+            ksSketchDefinition sketchDefinition = sketch.GetDefinition();
+            sketchDefinition.SetPlane(plane);
+            sketch.Create();
+
+            // Входим в режим редактирования эскиза
+            ksDocument2D document2D = sketchDefinition.BeginEdit();
+            document2D.ksLineSeg(0, 0, 0, height, 1);
+            document2D.ksLineSeg(0, height, width, height, 1);
+            document2D.ksLineSeg(width, height, width, 0, 1);
+            document2D.ksLineSeg(width, 0, 0, 0, 1);
+            sketchDefinition.EndEdit();
+
+            ///Выдавливание
+            ksEntity extrude = part.NewEntity((short)Obj3dType.o3d_bossExtrusion);
+            ksBossExtrusionDefinition extrudeDefinition = extrude.GetDefinition();
+            extrudeDefinition.directionType = (short)Direction_Type.dtNormal;
+            extrudeDefinition.SetSketch(sketch);
+            ksExtrusionParam extrudeParam = extrudeDefinition.ExtrusionParam();
+            extrudeParam.depthNormal = thickness;
+            extrude.Create();
+        }
+
+
+
     }
 }

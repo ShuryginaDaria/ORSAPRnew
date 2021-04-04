@@ -142,7 +142,7 @@
             // 
             // BuildButton
             // 
-            this.BuildButton.Location = new System.Drawing.Point(310, 350);
+            this.BuildButton.Location = new System.Drawing.Point(237, 352);
             this.BuildButton.Margin = new System.Windows.Forms.Padding(3, 2, 4, 4);
             this.BuildButton.Name = "BuildButton";
             this.BuildButton.Size = new System.Drawing.Size(100, 28);
@@ -163,7 +163,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 8, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(399, 174);
+            this.groupBox1.Size = new System.Drawing.Size(326, 174);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметры коробки";
@@ -178,7 +178,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 8, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(402, 131);
+            this.groupBox2.Size = new System.Drawing.Size(329, 126);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Параметры отсеков";
@@ -188,14 +188,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CausesValidation = false;
-            this.ClientSize = new System.Drawing.Size(422, 393);
+            this.ClientSize = new System.Drawing.Size(347, 393);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.BuildButton);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(440, 440);
-            this.MinimumSize = new System.Drawing.Size(440, 440);
+            this.MaximumSize = new System.Drawing.Size(365, 440);
+            this.MinimumSize = new System.Drawing.Size(365, 440);
             this.Name = "MainForm";
             this.ShowIcon = false;
             this.Text = "Box Builder";
