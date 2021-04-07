@@ -65,16 +65,14 @@ namespace Box.KompasWrapper
         /// </summary>
         public void BuildBox()
         {
-            // Создаём новую модель в компасе бля
+            // Создаём новую модель в компасе 
             var document = (ksDocument3D)_kompasObject.Document3D();
             document.Create();
             // Получаем корневой элемент в дереве элементов
             var rootPart = (ksPart)document.GetPart((short)Part_Type.pTop_Part);
-            // Получили
-            // Теперь нужна базовая плоскость, скажем, XY
+            // Теперь нужна базовая плоскость XY
             var planeXy = (ksEntity)rootPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
             // Теперь построим основание
-            // Эскиз для затравочки
             var bottomSketch = (ksEntity)rootPart.NewEntity((short)Obj3dType.o3d_sketch);
             // Получаем параметры эскиза
             var bottomDefinition = (ksSketchDefinition)bottomSketch.GetDefinition();
@@ -95,7 +93,6 @@ namespace Box.KompasWrapper
             // Основание сделали, теперь выдавливаем
             var baseExtrusion = Extrude(Box.Height, rootPart, bottomSketch);
             
-            // Теперь отсеки
             // Подсчёт нижних левых краёв для каждого из отсеков
             var space1lowerX = -(Box.Length / 2) + PlaneParameters.Thickness;
             var space1lowerY = -(Box.Width / 2) + PlaneParameters.Thickness;
@@ -109,7 +106,7 @@ namespace Box.KompasWrapper
             var space4lowerX = PlaneParameters.ThicknessCompartment / 2;
             var space4lowerY = PlaneParameters.ThicknessCompartment / 2;
 
-            // Загоняем их в список из кортежей типа <double, double>
+            // Записываем их в список из кортежей типа <double, double>
             var spacePoints = new List<Tuple<double, double>>()          
             {
                 new Tuple<double, double>(space1lowerX, space1lowerY),
@@ -181,18 +178,16 @@ namespace Box.KompasWrapper
             // Установка эскиза, который будем выдавливать
             extrusionDefinition.SetSketch(sketch);
             // Направление выдавливания (здесь строго обратное, но вообще, лучше расхардкодить и
-            // вынести в параметр функции; другое дело, что Калентьев может спалить, что это я писал
             properties.direction = (int)Direction_Type.dtReverse;
             // Глубина выдавливания в обратную сторону
             properties.depthReverse = depth;
             
-            // Уже не помню, что это за хуйня
-            // А не, напиздел, это типы выдавливания в прямом и обратном направлениях
+
             // 0 - строго на глубину
             properties.typeNormal = 0;
             properties.typeReverse = 0;
             
-            // Непосредственно выдавливание
+            // Выдавливание
             extrusionEntity.Create();
             return extrusionEntity;
         }
@@ -207,13 +202,12 @@ namespace Box.KompasWrapper
             var properties = (ksExtrusionParam)extrusionDefinition.ExtrusionParam();
             // Установка эскиза, который будем выдавливать
             extrusionDefinition.SetSketch(sketch);
-            // Направление выдавливания (здесь строго прямое, но вообще, лучше расхардкодить и
-            // вынести в параметр функции; другое дело, что Калентьев может спалить, что это я писал
+            // Направление выдавливания
             properties.direction = (int)Direction_Type.dtNormal;
             // Глубина выдавливания прямо
             properties.depthNormal = depth;
             
-            // Это типы выдавливания в прямом и обратном направлениях
+            // Выдавливания в прямом и обратном направлениях
             // 0 - строго на глубину
             properties.typeNormal = 0;
             properties.typeReverse = 0;
