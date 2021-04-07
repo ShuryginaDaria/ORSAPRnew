@@ -3,6 +3,8 @@ using System.Runtime.InteropServices;
 using Box.Model;
 using Kompas6API5;
 using Kompas6Constants3D;
+using Kompas6Constants;
+using System.Collections.Generic;
 
 namespace Box.KompasWrapper
 {
@@ -12,6 +14,11 @@ namespace Box.KompasWrapper
         ///     Хранит ссылку на экземпляр Компас 3Д
         /// </summary>
         private KompasObject _kompasObject;
+
+        /// <summary>
+        /// Модель коробки
+        /// </summary>
+        public PlaneParameters Box { get; set; }
 
         /// <summary>
         ///     Запуск KOMPAS
@@ -51,6 +58,169 @@ namespace Box.KompasWrapper
 
                 _kompasObject.ActivateControllerAPI();
             }
+        }
+
+        /// <summary>
+        /// Строит коробку
+        /// </summary>
+        public void BuildBox()
+        {
+            // Создаём новую модель в компасе бля
+            var document = (ksDocument3D)_kompasObject.Document3D();
+            document.Create();
+            // Получаем корневой элемент в дереве элементов
+            var rootPart = (ksPart)document.GetPart((short)Part_Type.pTop_Part);
+            // Получили
+            // Теперь нужна базовая плоскость, скажем, XY
+            var planeXy = (ksEntity)rootPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
+            // Теперь построим основание
+            // Эскиз для затравочки
+            var bottomSketch = (ksEntity)rootPart.NewEntity((short)Obj3dType.o3d_sketch);
+            // Получаем параметры эскиза
+            var bottomDefinition = (ksSketchDefinition)bottomSketch.GetDefinition();
+            // Назначаем координаты
+            bottomDefinition.SetPlane(planeXy);
+            // Открываем эскиз для редактирования
+            bottomSketch.Create();
+            var edited = (ksDocument2D)bottomDefinition.BeginEdit();
+            
+            // Нижний левый край
+            var lowerLeftX = -(Box.Length / 2);
+            var lowerLeftY = -(Box.Width / 2);
+            
+            // Строим прямоугольник
+            CreateRectangle(edited, lowerLeftX, lowerLeftY, Box.Length, Box.Width);
+            bottomDefinition.EndEdit();
+
+            // Основание сделали, теперь выдавливаем
+            var baseExtrusion = Extrude(Box.Height, rootPart, bottomSketch);
+            
+            // Теперь отсеки
+            // Подсчёт нижних левых краёв для каждого из отсеков
+            var space1lowerX = -(Box.Length / 2) + PlaneParameters.Thickness;
+            var space1lowerY = -(Box.Width / 2) + PlaneParameters.Thickness;
+
+            var space2lowerX = PlaneParameters.ThicknessCompartment / 2;
+            var space2lowerY = -(Box.Width / 2) + PlaneParameters.Thickness;
+            
+            var space3lowerX = -(Box.Length / 2) + PlaneParameters.Thickness;
+            var space3lowerY = PlaneParameters.ThicknessCompartment / 2;
+            
+            var space4lowerX = PlaneParameters.ThicknessCompartment / 2;
+            var space4lowerY = PlaneParameters.ThicknessCompartment / 2;
+
+            // Загоняем их в список из кортежей типа <double, double>
+            var spacePoints = new List<Tuple<double, double>>()          
+            {
+                new Tuple<double, double>(space1lowerX, space1lowerY),
+                new Tuple<double, double>(space2lowerX, space2lowerY),
+                new Tuple<double, double>(space3lowerX, space3lowerY),
+                new Tuple<double, double>(space4lowerX, space4lowerY)
+            };
+            
+            // Делаем для них эскизы
+            for (int i = 0; i < 4; i++)
+            {
+                var sketch = (ksEntity)rootPart.NewEntity((short)Obj3dType.o3d_sketch);
+                // Получаем параметры эскиза
+                var definition = (ksSketchDefinition)sketch.GetDefinition();
+                // Назначаем координаты
+                definition.SetPlane(planeXy);
+                // Открываем эскиз для редактирования
+                sketch.Create();
+                var edit = (ksDocument2D)definition.BeginEdit();
+                // Строим прямоугольник
+                CreateRectangle(edit, spacePoints[i].Item1, spacePoints[i].Item2, 
+                    Box.LengthCompartment, Box.WidthCompartment);
+                bottomDefinition.EndEdit();
+                // Вырезаем выдавливанием на высоту коробки минус толщину внешней стенки
+                ExtrudeToCut(Box.Height - PlaneParameters.Thickness, rootPart, sketch);
+            }
+        }
+
+        /// <summary>
+        /// Создаёт прямоугольник на плоскости
+        /// </summary>
+        /// <param name="sketch">Эскиз</param>
+        /// <param name="x">X левого нижнего угла</param>
+        /// <param name="y">Y левого нижнего угла</param>
+        /// <param name="width">Длина</param>
+        /// <param name="height">Ширина</param>
+        private void CreateRectangle(ksDocument2D sketch, double x, double y, double width, double height)
+        {
+            // Получение структуры параметров прямоугольника
+            var rectParams = (ksRectangleParam)_kompasObject
+                .GetParamStruct((short)StructType2DEnum.ko_RectangleParam);
+            // Назначение координат
+            rectParams.x = x;
+            rectParams.y = y;
+            // Назначение высоты и ширины
+            rectParams.width = width;
+            rectParams.height = height;
+            // Основной стиль линии
+            rectParams.style = 1;
+            // Построение
+            sketch.ksRectangle(rectParams);
+        }
+
+        /// <summary>
+        /// Выдавливает эскиз
+        /// </summary>
+        /// <param name="depth">Глубина</param>
+        /// <param name="part">Деталь</param>
+        /// <param name="sketch">Эскиз</param>
+        /// <returns>Объект выдавливания в дереве построения</returns>
+        private ksEntity Extrude(double depth, ksPart part, ksEntity sketch)
+        {
+            // Создание операции выдавливания
+            var extrusionEntity = (ksEntity)part.NewEntity((short)Obj3dType.o3d_bossExtrusion);
+            // Получение свойств операции
+            var extrusionDefinition = (ksBossExtrusionDefinition)extrusionEntity.GetDefinition();
+            // Получение структуры параметров операции
+            var properties = (ksExtrusionParam)extrusionDefinition.ExtrusionParam();
+            // Установка эскиза, который будем выдавливать
+            extrusionDefinition.SetSketch(sketch);
+            // Направление выдавливания (здесь строго обратное, но вообще, лучше расхардкодить и
+            // вынести в параметр функции; другое дело, что Калентьев может спалить, что это я писал
+            properties.direction = (int)Direction_Type.dtReverse;
+            // Глубина выдавливания в обратную сторону
+            properties.depthReverse = depth;
+            
+            // Уже не помню, что это за хуйня
+            // А не, напиздел, это типы выдавливания в прямом и обратном направлениях
+            // 0 - строго на глубину
+            properties.typeNormal = 0;
+            properties.typeReverse = 0;
+            
+            // Непосредственно выдавливание
+            extrusionEntity.Create();
+            return extrusionEntity;
+        }
+
+        private ksEntity ExtrudeToCut(double depth, ksPart part, ksEntity sketch)
+        {
+            // Создание операции выдавливания
+            var extrusionEntity = (ksEntity)part.NewEntity((short)Obj3dType.o3d_cutExtrusion);
+            // Получение свойств операции
+            var extrusionDefinition = (ksCutExtrusionDefinition)extrusionEntity.GetDefinition();
+            // Получение структуры параметров операции
+            var properties = (ksExtrusionParam)extrusionDefinition.ExtrusionParam();
+            // Установка эскиза, который будем выдавливать
+            extrusionDefinition.SetSketch(sketch);
+            // Направление выдавливания (здесь строго прямое, но вообще, лучше расхардкодить и
+            // вынести в параметр функции; другое дело, что Калентьев может спалить, что это я писал
+            properties.direction = (int)Direction_Type.dtNormal;
+            // Глубина выдавливания прямо
+            properties.depthNormal = depth;
+            
+            // Это типы выдавливания в прямом и обратном направлениях
+            // 0 - строго на глубину
+            properties.typeNormal = 0;
+            properties.typeReverse = 0;
+            
+            // Непосредственно выдавливание
+            extrusionEntity.Create();
+            return extrusionEntity;
         }
 
         /// <summary>

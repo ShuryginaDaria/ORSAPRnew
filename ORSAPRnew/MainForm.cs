@@ -41,21 +41,37 @@ namespace ORSAPRnew
 
         private void BuildButton_Click(object sender, EventArgs e)
         {
-        double length = Convert.ToDouble(LengthTextBox.Text);
-        double width = Convert.ToDouble(WidthTextBox.Text);
-        double height = Convert.ToDouble(HeightTextBox.Text);
-        double lengthCompartment = Convert.ToDouble(LengthCompartmentTextBox.Text);
-        int widthCompartment = Convert.ToInt32(LengthCompartmentTextBox.Text);
+            double length = 0;
+            double width = 0;
+            double height = 0;
+            double lengthCompartment = 0;
+            int widthCompartment = 0;
 
-        try
-        {
-        var planeParameters = new PlaneParameters(length, width, height, lengthCompartment, widthCompartment);
-        _builder.StartKompas();
-        }
-        catch (Exception exception)
-        {
-        MessageBox.Show(exception.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
+            try
+            {
+                length = Convert.ToDouble(LengthTextBox.Text);
+                width = Convert.ToDouble(WidthTextBox.Text);
+                height = Convert.ToDouble(HeightTextBox.Text);
+                lengthCompartment = Convert.ToDouble(LengthCompartmentTextBox.Text);
+                widthCompartment = Convert.ToInt32(WidthCompartmentTextBox.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Значения введены некорректно. Поля должны содержать только цифры.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                var planeParameters = new PlaneParameters(length, width, height, lengthCompartment, widthCompartment);
+                _builder.StartKompas();
+                _builder.Box = planeParameters;
+                _builder.BuildBox();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void HeightTextBox_TextChanged(object sender, EventArgs e)

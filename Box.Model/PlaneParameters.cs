@@ -16,12 +16,12 @@ namespace Box.Model
         /// <summary>
         ///     Тощина стенок коробки
         /// </summary>
-        private const double Thickness = 30;
+        public const double Thickness = 30;
 
         /// <summary>
         ///     Толщина внутренних стенок отсека
         /// </summary>
-        private const double ThicknessCompartment = 20;
+        public const double ThicknessCompartment = 20;
 
         /// <summary>
         ///     Максимальное значение высоты
