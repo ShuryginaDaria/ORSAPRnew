@@ -92,19 +92,28 @@ namespace Box.KompasWrapper
 
             // Основание сделали, теперь выдавливаем
             var baseExtrusion = Extrude(Box.Height, rootPart, bottomSketch);
-            
+
             // Подсчёт нижних левых краёв для каждого из отсеков
-            var space1lowerX = -(Box.Length / 2) + PlaneParameters.Thickness;
-            var space1lowerY = -(Box.Width / 2) + PlaneParameters.Thickness;
+            var space1lowerX = -PlaneParameters.ThicknessCompartment
+                              - Box.LengthCompartment;
+            var space1lowerY = lowerLeftY + PlaneParameters.Thickness;
 
             var space2lowerX = PlaneParameters.ThicknessCompartment / 2;
-            var space2lowerY = -(Box.Width / 2) + PlaneParameters.Thickness;
-            
-            var space3lowerX = -(Box.Length / 2) + PlaneParameters.Thickness;
-            var space3lowerY = PlaneParameters.ThicknessCompartment / 2;
-            
+            var space2lowerY = lowerLeftY + PlaneParameters.Thickness;
+
+            var space3lowerX = -PlaneParameters.ThicknessCompartment
+                               - Box.LengthCompartment;
+            var space3lowerY = lowerLeftY
+                               + PlaneParameters.Thickness
+                               + Box.WidthCompartment
+                               + PlaneParameters.ThicknessCompartment;
+
             var space4lowerX = PlaneParameters.ThicknessCompartment / 2;
-            var space4lowerY = PlaneParameters.ThicknessCompartment / 2;
+            var space4lowerY = lowerLeftY
+                               + PlaneParameters.Thickness
+                               + Box.WidthCompartment
+                               + PlaneParameters.ThicknessCompartment;
+
 
             // Записываем их в список из кортежей типа <double, double>
             var spacePoints = new List<Tuple<double, double>>()          
@@ -129,7 +138,7 @@ namespace Box.KompasWrapper
                 // Строим прямоугольник
                 CreateRectangle(edit, spacePoints[i].Item1, spacePoints[i].Item2, 
                     Box.LengthCompartment, Box.WidthCompartment);
-                bottomDefinition.EndEdit();
+                definition.EndEdit();
                 // Вырезаем выдавливанием на высоту коробки минус толщину внешней стенки
                 ExtrudeToCut(Box.Height - PlaneParameters.Thickness, rootPart, sketch);
             }
