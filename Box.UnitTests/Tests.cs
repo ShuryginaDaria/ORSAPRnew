@@ -7,177 +7,151 @@ namespace Box.UnitTests
     [TestFixture]
     public class Tests
     {
+        private const double LengthDefault = 1200;
+        private const double WidthDefault = 700;
+        private const double HeightDefault = 300;
+        private const double LengthCompartmentDefault = 560;
+        private const double WidthCompartmentDefault = 310;
+
+        private const double LengthCompartmentMax = 710;
+        private const double WidthCompartmentMax = 460;
+
+        private const double TooHighValue = 10000;
+        private const double TooLowValue = 1;
+
+        private PlaneParameters SetDefault()
+        {
+            return Set(LengthDefault, WidthDefault, HeightDefault,
+                LengthCompartmentDefault, WidthCompartmentDefault);
+        }
+
+        private PlaneParameters Set(double length,
+            double width,
+            double height,
+            double lengthCompartment,
+            double widthCompartment)
+        {
+            return new PlaneParameters(length,
+                width,
+                height,
+                lengthCompartment,
+                (int)widthCompartment);
+        }
+
         [Test(Description = "Позитивный тест создания модели коробки")]
         public void ConstructorPositiveTest()
         {
-            Assert.DoesNotThrow(() => 
-            { 
-                var plane = new PlaneParameters(1200, 700, 300, 
-                560, 310);
-                
-            }, "Модель выдала ошибку на стандартные значения");
+            Assert.DoesNotThrow(() => { SetDefault(); },
+                "Модель выдала ошибку на стандартные значения");
         }
 
         [Test(Description = "Позитивный тест геттера длины")]
         public void LengthPositiveTest()
         {
-            var plane = new PlaneParameters(1200, 700, 300, 
-                560, 310);
-            Assert.AreEqual(plane.Length, 1200, "Геттер длины вернул неверное значение");
+            var plane = SetDefault();
+            Assert.AreEqual(plane.Length, LengthDefault, "Геттер длины вернул неверное значение");
         }
-        
-        //TODO: Duplication
-        [Test(Description = "Негативный тест создания модели коробки: " +
-                            "слишком большая длина")]
-        public void TooHighLength()
+
+        [TestCase(TooHighValue, TestName = "Негативный тест создания модели коробки: " +
+                                     "слишком большая длина")]
+        [TestCase(TooLowValue, TestName = "Негативный тест создания модели коробки: " +
+                                "слишком малая длина")]
+        public void LengthNegativeTest(double length)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
-                var plane = new PlaneParameters(10000, 700, 300, 
-                    560, 310);
+                Set(length, WidthDefault, HeightDefault,
+                    LengthCompartmentDefault, WidthCompartmentDefault);
             },
-                "Удалось присвоить слишком большую длину");
+                "Удалось присвоить неверную длину");
         }
-        
-        //TODO: Duplication
-        [TestCase(1, 700, TestName = "Негативный тест создания модели коробки: " +
-                            "слишком малая длина")]
-        public void TooLowLength(double length, double width)
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
-            {
-                var plane = new PlaneParameters(length, width, 300, 
-                    560, 310);
-            },
-                "Удалось присвоить слишком малую длину");
-        }
-        
+
         [Test(Description = "Позитивный тест геттера ширины")]
         public void WidthPositiveTest()
         {
-            var plane = new PlaneParameters(1200, 700, 300, 
-                560, 310);
-            Assert.AreEqual(plane.Width, 700, "Геттер ширины вернул неверное значение");
+            var plane = SetDefault();
+            Assert.AreEqual(plane.Width, WidthDefault, "Геттер ширины вернул неверное значение");
         }
-        
-        [Test(Description = "Негативный тест создания модели коробки: " +
-                            "слишком большая ширина")]
-        public void TooHighWidth()
+
+        [TestCase(TooHighValue, TestName = "Негативный тест создания модели коробки: " +
+                                           "слишком большая ширина")]
+        [TestCase(TooLowValue, TestName = "Негативный тест создания модели коробки: " +
+                                          "слишком малая ширина")]
+        public void WidthNegativeTest(double width)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
-                var plane = new PlaneParameters(1200, 7000, 300, 
-                    560, 310);
+                Set(LengthDefault, width, HeightDefault,
+                    LengthCompartmentDefault, WidthCompartmentDefault);
             },
-                "Удалось присвоить слишком большую ширину");
+                "Удалось присвоить неверную ширину");
         }
-        
-        [Test(Description = "Негативный тест создания модели коробки: " +
-                            "слишком малая ширина")]
-        public void TooLowWidth()
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
-            {
-                var plane = new PlaneParameters(1200, 70, 300, 
-                    560, 310);
-            },
-                "Удалось присвоить слишком малую ширину");
-        }
-        
+
         [Test(Description = "Позитивный тест геттера высоты")]
         public void HeightPositiveTest()
         {
-            var plane = new PlaneParameters(1200, 700, 300, 
-                560, 310);
-            Assert.AreEqual(plane.Height, 300, "Геттер высоты вернул неверное значение");
+            var plane = SetDefault();
+            Assert.AreEqual(plane.Height, HeightDefault, "Геттер высоты вернул неверное значение");
         }
-        
-        [Test(Description = "Негативный тест создания модели коробки: " +
-                            "слишком большая высота")]
-        public void TooHighHeight()
+
+        [TestCase(TooHighValue, TestName = "Негативный тест создания модели коробки: " +
+                                           "слишком большая высота")]
+        [TestCase(TooLowValue, TestName = "Негативный тест создания модели коробки: " +
+                                          "слишком малая высота")]
+        public void HeightNegativeTest(double height)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() =>
-                {
-                    var plane = new PlaneParameters(1200, 700, 3000, 
-                        560, 310);
-                },
-                "Удалось присвоить слишком большую высоту");
+            {
+                Set(LengthDefault, WidthDefault, height,
+                    LengthCompartmentDefault, WidthCompartmentDefault);
+            },
+                "Удалось присвоить неверную высоту");
         }
-        
-        [Test(Description = "Негативный тест создания модели коробки: " +
-                            "слишком малая высота")]
-        public void TooLowHeight()
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
-                {
-                    var plane = new PlaneParameters(1200, 700, 30, 
-                        560, 310);
-                },
-                "Удалось присвоить слишком малую высоту");
-        }
-        
+
         [Test(Description = "Позитивный тест геттера длины отсека")]
         public void LengthCompartmentPositiveTest()
         {
-            var plane = new PlaneParameters(1200, 700, 300, 
-                560, 310);
-            Assert.AreEqual(plane.LengthCompartment, 560, "Геттер длины отсека вернул неверное значение");
+            var plane = SetDefault();
+            Assert.AreEqual(plane.LengthCompartment, LengthCompartmentDefault,
+                "Геттер длины отсека вернул неверное значение");
         }
-        
-        [Test(Description = "Негативный тест создания модели коробки: " +
-                            "слишком большая длина отсека")]
-        public void TooHighLengthCompartment()
+
+        [TestCase(TooHighValue, TestName = "Негативный тест создания модели коробки: " +
+                                           "слишком большая длина отсека")]
+        [TestCase(TooLowValue, TestName = "Негативный тест создания модели коробки: " +
+                                          "слишком малая длина отсека")]
+        public void LengthCompartmentNegativeTest(double lengthCompartment)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() =>
-                {
-                    var plane = new PlaneParameters(1200, 700, 300, 
-                        5600, 310);
-                },
-                "Удалось присвоить слишком большую длину отсека");
+            {
+                Set(LengthDefault, WidthDefault, HeightDefault,
+                    lengthCompartment, WidthCompartmentDefault);
+            },
+                "Удалось присвоить неверную длину отсека");
         }
-        
-        [Test(Description = "Негативный тест создания модели коробки: " +
-                            "слишком малая длина отсека")]
-        public void TooLowLengthCompartment()
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
-                {
-                    var plane = new PlaneParameters(1200, 700, 30, 
-                        56, 310);
-                },
-                "Удалось присвоить слишком малую длину отсека");
-        }
-        
+
         [Test(Description = "Позитивный тест геттера ширины отсека")]
         public void WidthCompartmentPositiveTest()
         {
-            var plane = new PlaneParameters(1200, 700, 300, 
-                560, 310);
-            Assert.AreEqual(plane.WidthCompartment, 310, "Геттер ширины отсека вернул неверное значение");
+            var plane = SetDefault();
+            Assert.AreEqual(plane.WidthCompartment, WidthCompartmentDefault,
+                "Геттер ширины отсека вернул неверное значение");
         }
-        
-        [Test(Description = "Негативный тест создания модели коробки: " +
-                            "слишком большая ширина отсека")]
-        public void TooHighWidthCompartment()
+
+        [TestCase(TooHighValue, TestName =
+            "Негативный тест создания модели коробки: " +
+                                           "слишком большая ширину отсека")]
+        [TestCase(TooLowValue, TestName =
+            "Негативный тест создания модели коробки: " +
+                                          "слишком малая ширину отсека")]
+        public void WidthCompartmentNegativeTest(double widthCompartment)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() =>
-                {
-                    var plane = new PlaneParameters(1200, 700, 300, 
-                        560, 3100);
-                },
-                "Удалось присвоить слишком большую ширину отсека");
-        }
-        
-        [Test(Description = "Негативный тест создания модели коробки: " +
-                            "слишком малая ширина отсека")]
-        public void TooLowWidthCompartment()
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
-                {
-                    var plane = new PlaneParameters(1200, 700, 30, 
-                        560, 31);
-                },
-                "Удалось присвоить слишком малую длину отсека");
+            {
+                Set(LengthDefault, WidthDefault, HeightDefault,
+                    LengthCompartmentDefault, widthCompartment);
+            },
+                "Удалось присвоить неверную ширину отсека");
         }
 
         [Test(Description = "Негативный тест создания модели коробки: " +
@@ -185,22 +159,22 @@ namespace Box.UnitTests
         public void HalfOfWidthIsLessOrEqualsToWidthCompartment()
         {
             Assert.Throws<ArgumentException>(() =>
-                {
-                    var plane = new PlaneParameters(1200, 700, 300, 
-                        560, 460);
-                },
+            {
+                Set(LengthDefault, WidthDefault, HeightDefault,
+                    LengthCompartmentMax, WidthCompartmentDefault);
+            },
                 "Удалось присвоить слишком малую ширину");
         }
-        
+
         [Test(Description = "Негативный тест создания модели коробки: " +
                             "половина длины меньше или равна длине отсека")]
         public void HalfOfLengthIsLessOrEqualsToLengthCompartment()
         {
             Assert.Throws<ArgumentException>(() =>
-                {
-                    var plane = new PlaneParameters(1200, 700, 300, 
-                        710, 310);
-                },
+            {
+                Set(LengthDefault, WidthDefault, HeightDefault,
+                    LengthCompartmentDefault, WidthCompartmentMax);
+            },
                 "Удалось присвоить слишком малую длину");
         }
     }
