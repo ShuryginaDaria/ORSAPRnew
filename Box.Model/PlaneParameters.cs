@@ -143,6 +143,7 @@ namespace Box.Model
         public double LengthCompartment
         {
             get => _lengthCompartment;
+             //TODO: RSDN
             private set => _lengthCompartment =
                 SetCorrectValue(ParameterType.LengthCompartment, value, MaxLengthCompartment, MinLengthCompartment);
         }
@@ -153,6 +154,7 @@ namespace Box.Model
         public double WidthCompartment
         {
             get => _widthCompartment;
+             //TODO: RSDN
             private set => _widthCompartment =
                 SetCorrectValue(ParameterType.WidthCompartment, value, MaxWidthCompartment, MinWidthCompartment);
         }
@@ -181,20 +183,18 @@ namespace Box.Model
              Height = height;
              LengthCompartment = lengthCompartment;
              WidthCompartment = widthCompartment;
+            
+                if (width / 2 <= widthCompartment)
+                {
+                    throw new ArgumentException(
+                        "Ширина отсека  не может быть больше половины ширины коробки");
+                }
 
-                       
-
-            if (width / 2 <= widthCompartment)
-            {
-                throw new ArgumentException(
-                    "Ширина отсека  не может быть больше половины ширины коробки");
-            }
-
-            if (length /2<= lengthCompartment)
-            {
-                throw new ArgumentException(
-                    "Длина отсека  не может быть больше половины длины коробки ");
-            }
+                if (length /2 <= lengthCompartment)
+                {
+                    throw new ArgumentException(
+                        "Длина отсека  не может быть больше половины длины коробки ");
+                }
                                                   
         }
 
@@ -220,9 +220,12 @@ namespace Box.Model
                 return value;
             }
 
+             //TODO: RSDN
             throw new ArgumentOutOfRangeException(parameterType +
                                                   ". Значение : " + value +
-                                                  " не входит в диапазон допустимых значений для данного параметра от " +
+                                                  " не входит в диапазон " +
+                                                  "допустимых значений для " +
+                                                  "данного параметра от " +
                                                   minValue + " до " + maxValue);
         }
 

@@ -26,6 +26,7 @@ namespace Box.UnitTests
             Assert.AreEqual(plane.Length, 1200, "Геттер длины вернул неверное значение");
         }
         
+        //TODO: Duplication
         [Test(Description = "Негативный тест создания модели коробки: " +
                             "слишком большая длина")]
         public void TooHighLength()
@@ -38,13 +39,14 @@ namespace Box.UnitTests
                 "Удалось присвоить слишком большую длину");
         }
         
-        [Test(Description = "Негативный тест создания модели коробки: " +
+        //TODO: Duplication
+        [TestCase(1, 700, TestName = "Негативный тест создания модели коробки: " +
                             "слишком малая длина")]
-        public void TooLowLength()
+        public void TooLowLength(double length, double width)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
-                var plane = new PlaneParameters(1, 700, 300, 
+                var plane = new PlaneParameters(length, width, 300, 
                     560, 310);
             },
                 "Удалось присвоить слишком малую длину");

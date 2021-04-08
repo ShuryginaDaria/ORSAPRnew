@@ -74,6 +74,7 @@ namespace ORSAPRnew
             }
         }
 
+        //TODO: Duplication
         private void HeightTextBox_TextChanged(object sender, EventArgs e)
         {
             

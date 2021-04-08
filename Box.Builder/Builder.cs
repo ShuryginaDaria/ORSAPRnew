@@ -250,7 +250,7 @@ namespace Box.KompasWrapper
             document2D.ksLineSeg(width, 0, 0, 0, 1);
             sketchDefinition.EndEdit();
 
-            ///Выдавливание
+            // Выдавливание
             ksEntity extrude = part.NewEntity((short)Obj3dType.o3d_bossExtrusion);
             ksBossExtrusionDefinition extrudeDefinition = extrude.GetDefinition();
             extrudeDefinition.directionType = (short)Direction_Type.dtNormal;
@@ -259,8 +259,5 @@ namespace Box.KompasWrapper
             extrudeParam.depthNormal = thickness;
             extrude.Create();
         }
-
-
-
     }
 }
