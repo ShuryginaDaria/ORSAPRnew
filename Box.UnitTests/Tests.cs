@@ -49,12 +49,15 @@ namespace Box.UnitTests
         public void LengthPositiveTest()
         {
             var plane = SetDefault();
-            Assert.AreEqual(plane.Length, LengthDefault, "Геттер длины вернул неверное значение");
+            Assert.AreEqual(plane.Length, LengthDefault,
+                "Геттер длины вернул неверное значение");
         }
 
-        [TestCase(TooHighValue, TestName = "Негативный тест создания модели коробки: " +
+        [TestCase(TooHighValue, TestName =
+            "Негативный тест создания модели коробки: " +
                                      "слишком большая длина")]
-        [TestCase(TooLowValue, TestName = "Негативный тест создания модели коробки: " +
+        [TestCase(TooLowValue, TestName = 
+            "Негативный тест создания модели коробки: " +
                                 "слишком малая длина")]
         public void LengthNegativeTest(double length)
         {
@@ -70,7 +73,8 @@ namespace Box.UnitTests
         public void WidthPositiveTest()
         {
             var plane = SetDefault();
-            Assert.AreEqual(plane.Width, WidthDefault, "Геттер ширины вернул неверное значение");
+            Assert.AreEqual(plane.Width, WidthDefault, 
+                "Геттер ширины вернул неверное значение");
         }
 
         [TestCase(TooHighValue, TestName = "Негативный тест создания модели коробки: " +
@@ -91,7 +95,8 @@ namespace Box.UnitTests
         public void HeightPositiveTest()
         {
             var plane = SetDefault();
-            Assert.AreEqual(plane.Height, HeightDefault, "Геттер высоты вернул неверное значение");
+            Assert.AreEqual(plane.Height, HeightDefault, 
+                "Геттер высоты вернул неверное значение");
         }
 
         [TestCase(TooHighValue, TestName = "Негативный тест создания модели коробки: " +

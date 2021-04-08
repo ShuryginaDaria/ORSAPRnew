@@ -69,13 +69,17 @@ namespace Box.KompasWrapper
             var document = (ksDocument3D)_kompasObject.Document3D();
             document.Create();
             // Получаем корневой элемент в дереве элементов
-            var rootPart = (ksPart)document.GetPart((short)Part_Type.pTop_Part);
+            var rootPart = 
+                (ksPart)document.GetPart((short)Part_Type.pTop_Part);
             // Базовая плоскость XY
-            var planeXy = (ksEntity)rootPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
+            var planeXy = 
+                (ksEntity)rootPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
             // Построение основания
-            var bottomSketch = (ksEntity)rootPart.NewEntity((short)Obj3dType.o3d_sketch);
+            var bottomSketch = 
+                (ksEntity)rootPart.NewEntity((short)Obj3dType.o3d_sketch);
             // Получаем параметры эскиза
-            var bottomDefinition = (ksSketchDefinition)bottomSketch.GetDefinition();
+            var bottomDefinition = 
+                (ksSketchDefinition)bottomSketch.GetDefinition();
             // Назначаем координаты
             bottomDefinition.SetPlane(planeXy);
             // Открываем эскиз для редактирования
@@ -127,7 +131,8 @@ namespace Box.KompasWrapper
             // Делаем для них эскизы
             for (int i = 0; i < 4; i++)
             {
-                var sketch = (ksEntity)rootPart.NewEntity((short)Obj3dType.o3d_sketch);
+                var sketch = 
+                    (ksEntity)rootPart.NewEntity((short)Obj3dType.o3d_sketch);
                 // Получаем параметры эскиза
                 var definition = (ksSketchDefinition)sketch.GetDefinition();
                 // Назначаем координаты
@@ -152,7 +157,8 @@ namespace Box.KompasWrapper
         /// <param name="y">Y левого нижнего угла</param>
         /// <param name="width">Длина</param>
         /// <param name="height">Ширина</param>
-        private void CreateRectangle(ksDocument2D sketch, double x, double y, double width, double height)
+        private void CreateRectangle(ksDocument2D sketch, double x,
+            double y, double width, double height)
         {
             // Получение структуры параметров прямоугольника
             var rectParams = (ksRectangleParam)_kompasObject
@@ -179,11 +185,14 @@ namespace Box.KompasWrapper
         private ksEntity Extrude(double depth, ksPart part, ksEntity sketch)
         {
             // Создание операции выдавливания
-            var extrusionEntity = (ksEntity)part.NewEntity((short)Obj3dType.o3d_bossExtrusion);
+            var extrusionEntity = 
+                (ksEntity)part.NewEntity((short)Obj3dType.o3d_bossExtrusion);
             // Получение свойств операции
-            var extrusionDefinition = (ksBossExtrusionDefinition)extrusionEntity.GetDefinition();
+            var extrusionDefinition = 
+                (ksBossExtrusionDefinition)extrusionEntity.GetDefinition();
             // Получение структуры параметров операции
-            var properties = (ksExtrusionParam)extrusionDefinition.ExtrusionParam();
+            var properties = 
+                (ksExtrusionParam)extrusionDefinition.ExtrusionParam();
             // Установка эскиза, который будем выдавливать
             extrusionDefinition.SetSketch(sketch);
             // Направление выдавливания (здесь строго обратное)
@@ -204,11 +213,14 @@ namespace Box.KompasWrapper
         private ksEntity ExtrudeToCut(double depth, ksPart part, ksEntity sketch)
         {
             // Создание операции выдавливания
-            var extrusionEntity = (ksEntity)part.NewEntity((short)Obj3dType.o3d_cutExtrusion);
+            var extrusionEntity =
+                (ksEntity)part.NewEntity((short)Obj3dType.o3d_cutExtrusion);
             // Получение свойств операции
-            var extrusionDefinition = (ksCutExtrusionDefinition)extrusionEntity.GetDefinition();
+            var extrusionDefinition = 
+                (ksCutExtrusionDefinition)extrusionEntity.GetDefinition();
             // Получение структуры параметров операции
-            var properties = (ksExtrusionParam)extrusionDefinition.ExtrusionParam();
+            var properties = 
+                (ksExtrusionParam)extrusionDefinition.ExtrusionParam();
             // Установка эскиза, который будем выдавливать
             extrusionDefinition.SetSketch(sketch);
             // Направление выдавливания

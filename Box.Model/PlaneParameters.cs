@@ -145,7 +145,8 @@ namespace Box.Model
             get => _lengthCompartment;
              //TODO: RSDN
             private set => _lengthCompartment =
-                SetCorrectValue(ParameterType.LengthCompartment, value, MaxLengthCompartment, MinLengthCompartment);
+                SetCorrectValue(ParameterType.LengthCompartment, value,
+                    MaxLengthCompartment, MinLengthCompartment);
         }
 
         /// <summary>
@@ -156,7 +157,8 @@ namespace Box.Model
             get => _widthCompartment;
              //TODO: RSDN
             private set => _widthCompartment =
-                SetCorrectValue(ParameterType.WidthCompartment, value, MaxWidthCompartment, MinWidthCompartment);
+                SetCorrectValue(ParameterType.WidthCompartment, value, 
+                    MaxWidthCompartment, MinWidthCompartment);
         }
 
 
@@ -187,13 +189,13 @@ namespace Box.Model
                 if (width / 2 <= widthCompartment)
                 {
                     throw new ArgumentException(
-                        "Ширина отсека  не может быть больше половины ширины коробки");
+                    "Ширина отсека  не может быть больше половины ширины коробки");
                 }
 
                 if (length /2 <= lengthCompartment)
                 {
                     throw new ArgumentException(
-                        "Длина отсека  не может быть больше половины длины коробки ");
+                    "Длина отсека  не может быть больше половины длины коробки ");
                 }
                                                   
         }

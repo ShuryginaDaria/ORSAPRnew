@@ -57,47 +57,26 @@ namespace ORSAPRnew
             }
             catch
             {
-                MessageBox.Show("Значения введены некорректно. Поля должны содержать только цифры.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show
+                    ("Значения введены некорректно. Поля должны содержать только цифры.", 
+                    "Ошибка", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             try
             {
-                var planeParameters = new PlaneParameters(length, width, height, lengthCompartment, widthCompartment);
+                var planeParameters = new PlaneParameters(length, width, height, 
+                    lengthCompartment, widthCompartment);
                 _builder.StartKompas();
                 _builder.Box = planeParameters;
                 _builder.BuildBox();
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(exception.Message, "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-
-        //TODO: Duplication
-        private void HeightTextBox_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void LengthTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void WidthTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LengthCompartmentTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void WidthCompartmentTextBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -52,7 +52,6 @@
             this.HeightTextBox.Name = "HeightTextBox";
             this.HeightTextBox.Size = new System.Drawing.Size(89, 22);
             this.HeightTextBox.TabIndex = 0;
-            this.HeightTextBox.TextChanged += new System.EventHandler(this.HeightTextBox_TextChanged);
             // 
             // LengthTextBox
             // 
@@ -61,7 +60,6 @@
             this.LengthTextBox.Name = "LengthTextBox";
             this.LengthTextBox.Size = new System.Drawing.Size(89, 22);
             this.LengthTextBox.TabIndex = 1;
-            this.LengthTextBox.TextChanged += new System.EventHandler(this.LengthTextBox_TextChanged);
             // 
             // label1
             // 
@@ -100,7 +98,6 @@
             this.WidthTextBox.Name = "WidthTextBox";
             this.WidthTextBox.Size = new System.Drawing.Size(89, 22);
             this.WidthTextBox.TabIndex = 4;
-            this.WidthTextBox.TextChanged += new System.EventHandler(this.WidthTextBox_TextChanged);
             // 
             // label4
             // 
@@ -119,7 +116,6 @@
             this.LengthCompartmentTextBox.Name = "LengthCompartmentTextBox";
             this.LengthCompartmentTextBox.Size = new System.Drawing.Size(89, 22);
             this.LengthCompartmentTextBox.TabIndex = 6;
-            this.LengthCompartmentTextBox.TextChanged += new System.EventHandler(this.LengthCompartmentTextBox_TextChanged);
             // 
             // label5
             // 
@@ -138,7 +134,6 @@
             this.WidthCompartmentTextBox.Name = "WidthCompartmentTextBox";
             this.WidthCompartmentTextBox.Size = new System.Drawing.Size(89, 22);
             this.WidthCompartmentTextBox.TabIndex = 8;
-            this.WidthCompartmentTextBox.TextChanged += new System.EventHandler(this.WidthCompartmentTextBox_TextChanged);
             // 
             // BuildButton
             // 
