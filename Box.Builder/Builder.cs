@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 namespace Box.KompasWrapper
 {
+    //TODO: XML комментарии?
     public class Builder
     {
         /// <summary>

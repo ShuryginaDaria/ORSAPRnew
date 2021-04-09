@@ -15,10 +15,12 @@ using Box.Model;
 
 namespace ORSAPRnew
 {
+    //TODO: XML комментарии?
     public partial class MainForm : Form
     {
         #region Readonly fields
 
+        //TODO: XML комментарии?
         private readonly Builder _builder = new Builder();
 
         #endregion
@@ -28,17 +30,17 @@ namespace ORSAPRnew
             InitializeComponent();
         }
 
+         //TODO: RSDN
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
+
         /// <summary>
         ///     Обработчик события нажатия на кнопку построить
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-     
-
         private void BuildButton_Click(object sender, EventArgs e)
         {
             double length = 0;

@@ -143,7 +143,6 @@ namespace Box.Model
         public double LengthCompartment
         {
             get => _lengthCompartment;
-             //TODO: RSDN
             private set => _lengthCompartment =
                 SetCorrectValue(ParameterType.LengthCompartment, value,
                     MaxLengthCompartment, MinLengthCompartment);
@@ -155,14 +154,10 @@ namespace Box.Model
         public double WidthCompartment
         {
             get => _widthCompartment;
-             //TODO: RSDN
             private set => _widthCompartment =
                 SetCorrectValue(ParameterType.WidthCompartment, value, 
                     MaxWidthCompartment, MinWidthCompartment);
         }
-
-
-
 
         #endregion
 
@@ -222,7 +217,6 @@ namespace Box.Model
                 return value;
             }
 
-             //TODO: RSDN
             throw new ArgumentOutOfRangeException(parameterType +
                                                   ". Значение : " + value +
                                                   " не входит в диапазон " +

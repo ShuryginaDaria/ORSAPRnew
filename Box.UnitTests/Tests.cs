@@ -18,13 +18,15 @@ namespace Box.UnitTests
 
         private const double TooHighValue = 10000;
         private const double TooLowValue = 1;
-
+        
+        //TODO: XML комментарии?
         private PlaneParameters SetDefault()
         {
             return Set(LengthDefault, WidthDefault, HeightDefault,
                 LengthCompartmentDefault, WidthCompartmentDefault);
         }
 
+        //TODO: XML комментарии?
         private PlaneParameters Set(double length,
             double width,
             double height,
@@ -53,7 +55,7 @@ namespace Box.UnitTests
                 "Геттер длины вернул неверное значение");
         }
 
-        [TestCase(TooHighValue, TestName =
+        [TestCase(TooHighValue,  TestName =
             "Негативный тест создания модели коробки: " +
                                      "слишком большая длина")]
         [TestCase(TooLowValue, TestName = 
