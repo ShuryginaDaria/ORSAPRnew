@@ -173,7 +173,7 @@ namespace Box.Model
         /// <param name="widthCompartment"></param>
 
         public PlaneParameters(double length, double width, double height,
-            double lengthCompartment, int widthCompartment)
+            double lengthCompartment, double widthCompartment)
         {
              Length = length;
              Width = width;

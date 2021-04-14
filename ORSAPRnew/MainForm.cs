@@ -11,11 +11,11 @@ using Box.KompasWrapper;
 using Box.Model;
 
 
-
-
 namespace ORSAPRnew
 {
-    //TODO: XML комментарии?
+        /// <summary>
+        ///      Визуальный интерфейс плагина
+        /// </summary>
     public partial class MainForm : Form
     {
         #region Readonly fields
@@ -28,12 +28,6 @@ namespace ORSAPRnew
         public MainForm()
         {
             InitializeComponent();
-        }
-
-         //TODO: RSDN
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
 
         /// <summary>

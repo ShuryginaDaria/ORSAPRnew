@@ -8,7 +8,9 @@ using System.Collections.Generic;
 
 namespace Box.KompasWrapper
 {
-    //TODO: XML комментарии?
+    /// <summary>
+    ///     Запуск Компас 3D и построение коробки
+    /// </summary>
     public class Builder
     {
         /// <summary>
