@@ -20,7 +20,9 @@ namespace ORSAPRnew
     {
         #region Readonly fields
 
-        //TODO: XML комментарии?
+        /// <summary>
+        ///      Поле для хранения данных о билдере
+        /// </summary>
         private readonly Builder _builder = new Builder();
 
         #endregion
