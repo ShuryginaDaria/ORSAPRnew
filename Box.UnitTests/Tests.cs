@@ -49,10 +49,10 @@ namespace Box.UnitTests
 
         [TestCase(700, 1200, 300, 400, 560,
             TestName =
-                "Тест на создание объекта PlaneParameters  ширина")]
+                "Тест на создание объекта PlaneParameters  ширина отсека больше половины ширины коробки ")]
         [TestCase(700, 1200, 300, 310, 700,
             TestName =
-                "Тест на создание объекта PlaneParameters с длина")]
+                "Тест на создание объекта PlaneParameters с длина отсека больше половины длины коробки")]
 
         public void PlaneParameterConstructor1_NegativeTest
         (double width, double length, double height, double widthCompartment,
